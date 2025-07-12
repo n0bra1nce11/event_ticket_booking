@@ -21,7 +21,7 @@ class BasicTestCase(unittest.TestCase):
     def test_admin_login(self):
         response = self.app.post(
             '/admin/login',
-            data=dict(password='admin'),
+            data=dict(username='admin', password='admin'),
             follow_redirects=True
         )
         self.assertEqual(response.status_code, 200)
