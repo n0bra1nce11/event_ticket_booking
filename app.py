@@ -62,7 +62,7 @@ def book(event_id):
 
         send_email(email, 'Your Ticket Booking Confirmation', f'Thank you for booking a ticket for {event["name"]}. Your private key is: {private_key}')
 
-        return f"Booking successful! Your private key has been sent to your email."
+        return "Booking successful! Your private key has been sent to your email."
 
     return render_template('booking.html', event=event)
 
@@ -84,11 +84,11 @@ def validate():
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        if request.form['password'] == 'admin':
+        if request.form['username'] == 'admin' and request.form['password'] == 'admin':
             session['admin_logged_in'] = True
             return redirect(url_for('admin_dashboard'))
         else:
-            return 'Invalid password.'
+            return 'Invalid username or password.'
     return render_template('admin_login.html')
 
 @app.route('/admin/dashboard')
